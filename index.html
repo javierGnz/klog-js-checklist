@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Info</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css"
+    />
+    <link rel="stylesheet" href="/css/app.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="container-item">
+        <p>
+          Existen distintas diferencias entre las regular y las arrow functions,
+          el valor de <code>this</code> en las regulares son por el propio
+          objeto o al que lo invoca, por mientras que en las arrows no se
+          definen por su propio contexto, siempre esta desde el llamado
+          exterior.
+        </p>
+        <p>
+          En las arrow functions no se pueden utilizar como constructores
+          <code>const data = new Data('foo')</code> daria error si
+          <code>Data</code> fuera una
+        </p>
+        <p>
+          No es necesario implicitar un <code>return</code> siempre y cuando sea
+          inline
+        </p>
+      </div>
+      <div class="container-item">
+        <p>
+          Este seria mi array
+          <code>
+              const nested = [ { isbn: "123-456-222", author: { lastname: "Doe",
+              firstname: "Jane", }, editor: { lastname: "Smith", firstname:
+              "Jane", }, title: "The Ultimate Database Study Guide", category:
+              ["Non-Fiction", "Technology"], }, ];
+            </code>
+        </p>
+        <p>Para la decontruccion de elementos como este ejemplo <code>const [{title}] = nested</code> que me traeria <span>"The ultimate database..."</span></p>
+        <p>se puede utilizar <code>const [{title: dir}] = nested</code> para solo generar un nombre a esa variable deconstruida, en caso de array sin objeto se puede hacer <code>const [{category: [firts]}] = nested</code> para obtener el primer elemento</p>
+        <p>se puede asignar a las variables un parametro por default <code>const [a=5, b=7] = [1]</code></p>
+        <p>Se puede asignar nombre y parametros por default <code>const user = { id: 42, displayName: 'jdoe', fullName: { firstName: 'John', lastName: 'Doe'} };</code> - <code>const {id: index = 1, displayName} = user</code></p>
+      </div>
+      <div class="container-item">
+        <p>spread syntax (...) toma todos los elementos dentro de un objeto o arreglo para ser usado en una lista de algun tipo, tambien sirve para concadernar si es necesario</p>
+      </div>
+      <div class="container-item">
+        <p>Rest parameter se coloca siempre al final de los algumentos, este retornara un arreglo estandar de js, da igual si es uno siempre sera un arreglo</p>
+        <p>El parametro rest tiene algunas definiciones previas. no se pueden utilizar mas de un rest parameter en una funcion <code>function foo(...fooUtilities, ...fooData, ...fooSample) { // do something } </code></p>
+        <p>Tambien este siempre debe ir al final de los demas argumentos <code>function bar(fistBar, secondBar, ...restBar) { // do something }</code></p>
+      </div>
+      <div class="container-item">
+        <p>Los Shorthand es una feature que siver para mejorar la sintaxis <code>function site(name, url) {return {name: name, url: url}}</code> por ejemplo <code>function site(name, url) {return {name, url}}</code></p>
+      </div>
+      <div class="container-item">
+        <p>Un closure te da acceso al scope de una funcion exterior dentro de una funcion <code>function foo(){ var b = 1; function inner(){ return b } return inner }</code> y asi se llama <code>var get_func_inner = foo()</code></p>
+      </div>
+      <div class="container-item">
+        Standard Loop como for o forech
+        <p>
+          Para salirse de un loop se puede utilizar <code>break</code> cuando se
+          cumpla una condición
+        </p>
+        <p>
+          Un iterable object seria un objeto que se puede iterar por si mismo
+        </p>
+      </div>
+      <div class="container-item">
+        <p>la funcion <code>map()</code> crea un nuevo arreglo a base de uno ya existente</p>
+        <p>la funcion <code>filter()</code> retorna un arreglo con nuevos datos filtrando dependiendo de algun parametro que yo ingrese o desee filtrar</p>
+        <p>la funcion <code>reduce()</code> retorna un valor que sera recordado por cada iteracion, se puede definir su valor inicial</p>
+        <p>la funcion <code>reduce()</code> retorna verdadero o falso dependiendo si encuentra o no la condicion ingresada</p>
+        <p>la funcion <code>every()</code> retorna verdadero o falso si todas los elementos son o verdaderos o falsos</p>
+        <p>la funcion <code>find()</code> retorna el elemnto que cumpla con la condicion</p>
+        <p>la funcion <code>findIndex()</code> retorna la posicion del elemento en el arreglo si no retorna -1</p>
+      </div>
+      <div class="container-item">
+        <p>Las promesas son objetos que tienen 3 estados: pending, fulfilled o rejected, el primero es una promesa ejecutandose, el segundo es que se cumplio dicha promesa y el ultimo que la promesa no se cumplio</p>
+        <p>Se utiliza de la siguiente manera <code>let request = new Promise((resolve, reject) => if (/* something */) { resolve("its fine") } else { reject(Error("has a error")) })</code></p>
+        <p>
+          Tras la llamada de la promesa existen tres metodos <code>.then()</code> - <code>.catch()</code> - <code>.finally()</code> el primero acepta dos parametros; un callback por resolve y el otro por reject, este genera un nueva promesa que puede ser utilizada para cadenas de request.
+          El segundo metodo solo seria como recibir un reject y asi evitar colocar el segundo parametro en el metodo <span>.then()</span> y el ultimo es para generar limpiezas como quitar loaders, cerrar conexiones, etc y se ejecuta sin importar si se resolvio o no la promesa
+          no recibe parametros y seria utilizado con cuando se ejecutan varios .then() o .catch()
+        </p>
+        <p>Ademas de aquello las promesas tiene distintos metodos propios como <code>Promise.all([...])</code> que ejecuta las promesas en forma paralela hasta que todas esten completas</p>
+        <p>Otro es <code>Promise.any([...])</code> al igual que la anterior acepta un array, pero termina cuando alguna de ellas es ejecutada</p>
+        <p><code>Promise.allSettled([...])</code> espera que las promesas sean ejecutadas, sin importar si estas son resolve o rejected, devuelve un arreglo que contiene su estado, su valor y si es error, la razon.</p>
+        <p><code>Promise.race([...])</code> desde el arreglo que le pasamos, ejecutara la primera mas rapida y retornara su valor.</p>
+      </div>
+      <div class="container-item">
+        <p>Async/Await serian basicamente una manera mas elegante de escribir promesas. Async se utiliza en las funciones y await solo se puede utilizar dentro de funciones que sean async y bloquea solo la funcion en la que se encuentra.</p>
+        <p>Para manejar errores con async/await se debe utilizar un <code>fun() { try {} catch {} }</code></p>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/js/app.js"></script>
+  </body>
+</html>
